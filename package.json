@@ -1,0 +1,40 @@
+{
+  "name": "sandbox-web",
+  "version": "0.0.1",
+  "description": "The web client for the sandbox mode of Particle Chat.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "build": "npm run check && vite build",
+    "start": "vite dev --port 3000",
+    "test": "vitest run",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knightlia/sandbox-web.git"
+  },
+  "author": "Saeed Afzal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Knightlia/sandbox-web/issues"
+  },
+  "homepage": "https://github.com/Knightlia/sandbox-web#readme",
+  "dependencies": {
+    "@sveltejs/adapter-static": "^2.0.1",
+    "@sveltejs/kit": "^1.15.2",
+    "svelte": "^3.58.0"
+  },
+  "devDependencies": {
+    "@testing-library/svelte": "^3.2.2",
+    "cypress": "^12.9.0",
+    "jsdom": "^21.1.1",
+    "svelte-check": "^3.2.0",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.2.1",
+    "vitest": "^0.30.0"
+  }
+}
