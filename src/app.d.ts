@@ -4,6 +4,12 @@ declare global {
         // interface Locals {}
         // interface PageData {}
         // interface Platform {}
+
+        interface SingleMessage {
+            sender: string;
+            message: string;
+            timestamp: number;
+        }
     }
 }
 
