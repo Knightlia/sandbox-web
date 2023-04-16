@@ -7,8 +7,8 @@ test.describe("Index route", () => {
         await expect(page).toHaveTitle("Sandbox - Particle Chat");
     });
 
-    test("should render preloader", async ({ page }) => {
+    test.only("should render preloader", async ({ page }) => {
         const img = page.getByAltText("Sandbox - Loading");
-        expect(img).toBeDefined();
+        expect(await img.isVisible()).toBeTruthy();
     });
 });

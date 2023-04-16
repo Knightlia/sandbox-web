@@ -14,7 +14,7 @@
         on:keydown={() => sidebarVisible.update(v => !v)}
     ></div>
     <aside class:collapsed="{!$sidebarVisible}">
-        <header class="py-2">
+        <header class="py-3">
             <h4>User List</h4>
         </header>
         <ul class="py-1">
@@ -27,7 +27,7 @@
 
 <!-- HACK: Height is the 100% - the TopBar height manually calculated -->
 <style lang="scss">
-    @import "$lib/styles/mixin/main";
+    @import "$lib/styles/mixin/index";
 
     .overlay {
         @include transition-all();
@@ -49,8 +49,8 @@
         right: 0;
         height: calc(100% - 51px);
         width: 250px;
-        background: white;
-        border-left: 1px solid $slate-200;
+        background: var(--main-accent-background);
+        border-left: 1px solid var(--main-border);
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -62,7 +62,7 @@
     }
 
     header {
-        border: 1px solid $slate-200;
+        border-bottom: 1px solid var(--main-border);
     }
 
     ul {

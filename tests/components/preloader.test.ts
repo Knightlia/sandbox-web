@@ -6,6 +6,6 @@ describe("PreLoader component", () => {
 
     test("should render", () => {
         render(PreLoader);
-        expect(screen.getByRole("img")).toBeDefined();
+        expect(screen.getByAltText("Sandbox - Loading")).toBeDefined();
     });
 });

@@ -1,7 +1,7 @@
 <div class="editor">
     <div contenteditable aria-placeholder="Enter message..." class="input"></div>
     <div class="menu">
-        <button class="primary" disabled>Send</button>
+        <button class="primary">Send ></button>
     </div>
 </div>
 

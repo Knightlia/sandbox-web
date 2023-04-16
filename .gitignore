@@ -106,6 +106,7 @@ dist
 # Svelte
 .svelte-kit
 build
+test-results
 
 # IDE
 .idea

@@ -2,15 +2,11 @@
     import PreLoader from "$lib/components/PreLoader.svelte";
     import Chat from "$lib/components/Chat.svelte";
 
-    let isLoading = true;
-
-    setTimeout(() => {
-        isLoading = !isLoading;
-    }, 3000);
+    const isLoading = true;
 </script>
 
 {#if isLoading}
-    <PreLoader />
+    <PreLoader/>
 {:else}
-    <Chat />
+    <Chat/>
 {/if}

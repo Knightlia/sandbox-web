@@ -5,14 +5,18 @@ import Bubble from "$lib/components/Bubble.svelte";
 describe("Bubble component", () => {
 
     test("should render props correctly", () => {
-        render(Bubble, {
+        const { container } = render(Bubble, {
             sender: "Name",
             message: "Test message.",
             timestamp: new Date().getTime()
         });
 
+        const avatar = document.querySelector(".avatar");
+        expect(avatar).not.toBeNull();
+
         expect(screen.getByText("Name")).toBeDefined();
         expect(screen.getByText("Test message.")).toBeDefined();
+        expect(avatar!.innerHTML).toBe("N");
     });
 
     test("should format date correctly", () => {

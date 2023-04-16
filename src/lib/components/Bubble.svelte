@@ -15,18 +15,22 @@
 </script>
 
 <div class={isSender ? "bubble sender" : "bubble"}>
-    <div class={isSender ? 'avatar sender' : 'avatar'}>{sender.at(0)?.toUpperCase()}</div>
+    <div class={isSender ? 'avatar sender' : 'avatar'}>
+        {sender.at(0)?.toUpperCase()}
+    </div>
     <div class="{isSender ? 'content sender' : 'content'}">
         <header class:sender={isSender}>
             <strong>{sender}</strong>
-            <small>{formatTimestamp(timestamp)}</small>
+            <small>
+                {formatTimestamp(timestamp)}
+            </small>
         </header>
-        <div class="message">{message}</div>
+        <div class="message">{@html message}</div>
     </div>
 </div>
 
 <style lang="scss">
-    @import "$lib/styles/mixin/main";
+    @import "$lib/styles/mixin/index";
 
     .bubble {
         display: flex;
@@ -51,8 +55,9 @@
         width: 2.5rem;
         font-size: 1.125rem;
         user-select: none;
-        background: $indigo-800;
+        background: $indigo-600;
         flex-shrink: 0;
+        font-weight: bold;
 
         &.sender {
             margin-left: 0.5rem;
@@ -61,14 +66,14 @@
     }
 
     .content {
-        @include shadow();
         @include px(0.75rem);
         @include py(0.5rem);
-        background: white;
+        background: var(--bubble-background);
         border-radius: 0.375rem;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.2), 0 1px 2px -1px rgb(0 0 0 / 0.2);
 
         &.sender {
-            background: $indigo-500;
+            background: var(--bubble-sender-background);
             color: $slate-50;
         }
     }

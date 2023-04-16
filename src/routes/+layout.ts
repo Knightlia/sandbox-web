@@ -1,4 +1,3 @@
-import "$lib/styles/core.scss";
-import "$lib/styles/spacing.scss";
+import "$lib/styles/main.scss";
 
 export const prerender = true;

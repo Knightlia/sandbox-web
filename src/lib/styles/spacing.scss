@@ -17,6 +17,7 @@ $values: (
 
         @each $k, $v in $values {
             .#{$t}#{$d}-#{$k} { #{$type}-#{$direction}: $v; }
+            .#{$t}-#{$k} { #{$type}: $v; }
 
             .#{$t}x-#{$k} {
                 #{$type}-left: $v;
@@ -27,6 +28,7 @@ $values: (
                 #{$type}-top: $v;
                 #{$type}-bottom: $v;
             }
+
         }
     }
 }

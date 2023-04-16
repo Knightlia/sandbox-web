@@ -37,7 +37,7 @@
 </div>
 
 <style lang="scss">
-    @import "$lib/styles/mixin/main";
+    @import "$lib/styles/mixin/index";
 
     @mixin flex-col() {
         flex: 1;

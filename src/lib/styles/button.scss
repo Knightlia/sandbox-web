@@ -1,4 +1,4 @@
-@import "mixin/main";
+@import "mixin";
 
 button, .btn {
     @include flex-center();
@@ -11,8 +11,9 @@ button, .btn {
     border-radius: 0.5rem;
     cursor: pointer;
     font-size: 0.875rem;
-    border: 1px solid $slate-200;
-    background: white;
+    border: 1px solid var(--btn-border);
+    background: var(--btn-background);
+    color: var(--btn-color);
 
     &:disabled {
         opacity: 0.5;
@@ -23,21 +24,21 @@ button, .btn {
     }
 
     &:focus-visible {
-        outline: 1px solid $slate-200;
+        outline: 1px solid var(--btn-outline);
         outline-offset: 2px;
     }
 
     &:hover {
-        background: $slate-50;
+        background: var(--btn-hover);
     }
 
     // NOTE: Primary theme
     &.primary {
-        background: $indigo-500;
+        background: var(--btn-primary-background);
         color: $slate-50;
 
         &:focus-visible {
-            outline-color: $indigo-300;
+            outline-color: $indigo-400;
         }
     }
 }

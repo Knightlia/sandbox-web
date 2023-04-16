@@ -1,7 +1,8 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/svelte";
 import TopBar from "$lib/components/TopBar.svelte";
 import { messageList, sidebarVisible } from "$lib/stores";
+import ThemeHandler from "$lib/themes/themehandler";
 
 interface SingleMessage {
     sender: string;
@@ -13,6 +14,10 @@ describe("Top bar component", () => {
 
     beforeEach(() => {
         render(TopBar);
+    });
+
+    afterEach(() => {
+        document.documentElement.innerHTML = "";
     });
 
     test("should render", () => {
@@ -43,5 +48,22 @@ describe("Top bar component", () => {
 
         await fireEvent.click(btn);
         expect(sidebarVisibleValue).toBeFalsy();
+    });
+
+    test("should call setTheme in the theme handler when theme dropdown items are clicked", async () => {
+        // Mock matchMedia
+        global.matchMedia = global.matchMedia || function () {
+            return {
+                matches: false
+            };
+        };
+
+        const spy = vi.spyOn(ThemeHandler, "setTheme");
+
+        const items = screen.getAllByRole("listitem");
+        for (const i of items) {
+            await fireEvent.click(i);
+            expect(spy).toBeCalled();
+        }
     });
 });

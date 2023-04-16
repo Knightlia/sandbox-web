@@ -8,7 +8,7 @@
 </div>
 
 <style lang="scss">
-    @import "$lib/styles/mixin/main";
+    @import "$lib/styles/mixin/index";
 
     .preloader {
         @include flex-center();

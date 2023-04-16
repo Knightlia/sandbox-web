@@ -11,5 +11,13 @@
       "$lib": ["src/lib"],
       "$lib/*": ["src/lib/*"]
     }
-  }
+  },
+  "include": [
+    ".svelte-kit/ambient.d.ts",
+    ".svelte-kit/types/**/$types.d.ts",
+    "vite.config.ts",
+    "src/**/*.ts",
+    "src/**/*.svelte",
+    "tests/**/*.ts"
+  ]
 }

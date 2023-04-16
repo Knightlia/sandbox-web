@@ -1,4 +1,4 @@
-@import "mixin/main";
+@import "mixin";
 
 *, :after, :before {
     box-sizing: border-box;
@@ -19,5 +19,11 @@ main {
     position: fixed;
     height: 100%;
     width: 100%;
-    background: $slate-50;
+    background: var(--main-background);
+    color: var(--main-color);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
 }
