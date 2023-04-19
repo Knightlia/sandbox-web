@@ -45,8 +45,8 @@ class WebSocketHandler {
         }, 30000);
     }
 
-    private async _onMessage(e: MessageEvent): Promise<void> {
-        const data = JSON.parse(await (e.data as Blob).text());
+    private _onMessage(e: MessageEvent): void {
+        const data = JSON.parse(e.data);
         console.debug(data);
 
         switch (data.mt) {
