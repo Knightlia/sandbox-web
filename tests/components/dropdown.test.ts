@@ -11,7 +11,7 @@ describe("Dropdown component", () => {
     });
 
     test("should be visible when clicking on label button", async () => {
-        console.log(document.querySelector("button")!.innerHTML);
         await fireEvent.click(screen.getByRole("button"));
+        expect(screen.getByRole("list")).toBeDefined();
     });
 });

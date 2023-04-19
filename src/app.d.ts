@@ -9,6 +9,7 @@ declare global {
             sender: string;
             message: string;
             timestamp: number;
+            isSender: boolean;
         }
     }
 }

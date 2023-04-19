@@ -28,7 +28,7 @@ describe("Top bar component", () => {
         let messageListValue: SingleMessage[] = [];
         messageList.subscribe(v => messageListValue = v);
 
-        messageList.set([{ sender: "", message: "", timestamp: 0 }])
+        messageList.set([{ sender: "", message: "", timestamp: 0, isSender: false }])
         expect(messageListValue.length).toBe(1);
 
         const btn = screen.getAllByRole("button")[1];

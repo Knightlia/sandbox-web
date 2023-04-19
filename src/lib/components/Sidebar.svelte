@@ -1,9 +1,21 @@
 <script lang="ts">
-    import { sidebarVisible, userList } from "$lib/stores";
+    import { sidebarVisible, userList, userNickname } from "$lib/stores";
     import { onMount } from "svelte";
+    import UserSetting from "$lib/usersetting";
+
+    let ul: string[] = [];
 
     onMount(() => {
         $sidebarVisible = screen.width >= 768;
+    });
+
+    userList.subscribe(val => {
+        if ($userNickname !== "") {
+            ul = val.filter(i => i !== UserSetting.nickname);
+            ul.unshift(UserSetting.nickname);
+        } else {
+            ul = val;
+        }
     });
 </script>
 
@@ -18,14 +30,18 @@
             <h4>User List</h4>
         </header>
         <ul class="py-1">
-            {#each $userList as user}
-                <li>{user}</li>
+            {#each ul as user}
+                {#if user === $userNickname}
+                    <li><strong>{user}</strong></li>
+                {:else}
+                    <li>{user}</li>
+                {/if}
             {/each}
         </ul>
     </aside>
 </div>
 
-<!-- HACK: Height is the 100% - the TopBar height manually calculated -->
+<!-- HACK: Height is the 100% minus the TopBar height manually calculated -->
 <style lang="scss">
     @import "$lib/styles/mixin/index";
 
@@ -68,10 +84,6 @@
     ul {
         flex: 1;
         overflow-y: auto;
-
-        li:first-child {
-            font-weight: 500
-        }
     }
 
     .collapsed {
