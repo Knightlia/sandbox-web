@@ -1,7 +1,36 @@
+<script lang="ts">
+    import MessageAPI from "$lib/api/messageapi";
+
+    let editorInput: string;
+
+    function keydown(e: KeyboardEvent): void {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    }
+
+    async function sendMessage(): Promise<void> {
+        if (editorInput === "" || editorInput.trim() === "") {
+            editorInput = "";
+            return;
+        }
+
+        await MessageAPI.execute(editorInput);
+        editorInput = "";
+    }
+</script>
+
 <div class="editor">
-    <div contenteditable aria-placeholder="Enter message..." class="input"></div>
+    <div
+        contenteditable
+        aria-placeholder="Enter message..."
+        class="input"
+        bind:innerText={editorInput}
+        on:keydown={keydown}></div>
+
     <div class="menu">
-        <button class="primary">Send ></button>
+        <button class="primary" on:click={sendMessage}>Send ></button>
     </div>
 </div>
 

@@ -2,11 +2,16 @@
     import TopBar from "$lib/components/TopBar.svelte";
     import Editor from "$lib/components/Editor.svelte";
     import Sidebar from "$lib/components/Sidebar.svelte";
-    import { messageList } from "$lib/stores";
+    import { messageList, modalVisible } from "$lib/stores";
     import Bubble from "$lib/components/Bubble.svelte";
-    import { afterUpdate } from "svelte";
+    import { afterUpdate, onMount } from "svelte";
+    import Modal from "$lib/components/Modal.svelte";
 
     let chatHistoryNode: HTMLDivElement;
+
+    onMount(() => {
+        $modalVisible = true;
+    });
 
     afterUpdate(() => {
         chatHistoryNode.scrollTop = chatHistoryNode.scrollHeight;
@@ -14,7 +19,7 @@
 </script>
 
 <div class="main">
-    <TopBar />
+    <TopBar/>
 
     <div class="chat">
         <div class="chat-main">
@@ -24,16 +29,20 @@
                         sender={m.sender}
                         message={m.message}
                         timestamp={m.timestamp}
-                        isSender={m.sender === "TODO - update"}
+                        isSender={m.isSender}
                     />
                 {/each}
             </div>
 
-            <Editor />
+            <Editor/>
         </div>
 
-        <Sidebar />
+        <Sidebar/>
     </div>
+
+    {#if $modalVisible}
+        <Modal/>
+    {/if}
 </div>
 
 <style lang="scss">
