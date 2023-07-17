@@ -5,9 +5,7 @@ import Dropdown from "$lib/components/dropdown/Dropdown.svelte";
 describe("Dropdown component", () => {
 
     beforeEach(() => {
-        render(Dropdown, {
-            label: "Label"
-        });
+        render(Dropdown);
     });
 
     test("should be visible when clicking on label button", async () => {
