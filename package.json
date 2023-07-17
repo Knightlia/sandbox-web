@@ -1,6 +1,6 @@
 {
   "name": "sandbox-web",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The web client for the sandbox mode of Particle Chat.",
   "private": true,
   "type": "module",

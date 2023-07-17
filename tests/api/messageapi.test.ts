@@ -37,7 +37,7 @@ describe("Message API", () => {
 
     test("should perform api request", async () => {
         UserSetting.token = "token";
-        await messageAPI.execute("message");
+        expect(messageAPI.execute("message")).resolves.not.toThrowError();
     });
 
     test("should throw error if an error response is returned from API", () => {

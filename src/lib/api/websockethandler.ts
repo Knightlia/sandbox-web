@@ -1,13 +1,8 @@
 import { isLoading, messageList, userList, userNickname } from "$lib/stores";
 import UserSetting from "$lib/usersetting";
+import { PUBLIC_WS_URL } from "$env/static/public";
 
 export default class WebSocketHandler {
-
-    /**
-     * URL for the websocket client to connect to.
-     * @private
-     */
-    private readonly _url = import.meta.env.VITE_WS_URL;
 
     /**
      * Reference to the user nickname.
@@ -30,7 +25,7 @@ export default class WebSocketHandler {
     }
 
     connect() {
-        const ws = new WebSocket(this._url);
+        const ws = new WebSocket(PUBLIC_WS_URL);
         ws.onopen = () => this._onOpen(ws);
         ws.onmessage = e => this._onMessage(e);
         ws.onclose = this._onClose;
