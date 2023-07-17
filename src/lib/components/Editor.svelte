@@ -1,6 +1,7 @@
 <script lang="ts">
     import MessageAPI from "$lib/api/messageapi";
 
+    const messageAPI = new MessageAPI();
     let editorInput: string;
 
     function keydown(e: KeyboardEvent): void {
@@ -16,7 +17,7 @@
             return;
         }
 
-        await MessageAPI.execute(editorInput);
+        await messageAPI.execute(editorInput);
         editorInput = "";
     }
 </script>
@@ -27,7 +28,10 @@
         aria-placeholder="Enter message..."
         class="input"
         bind:innerText={editorInput}
-        on:keydown={keydown}></div>
+        on:keydown={keydown}
+        role="textbox"
+        tabindex="0"
+    />
 
     <div class="menu">
         <button class="primary" on:click={sendMessage}>Send ></button>

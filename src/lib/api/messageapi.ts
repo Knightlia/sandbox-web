@@ -1,15 +1,16 @@
-import { PUBLIC_API_URL } from "$env/static/public";
 import UserSetting from "$lib/usersetting";
 
-class MessageAPI {
+export default class MessageAPI {
+
+    private readonly _url = import.meta.env.VITE_API_URL;
 
     async execute(message: string): Promise<void> {
         if (!UserSetting.token) {
-            console.debug("[NicknameAPI] Token not set.");
-            return;
+            console.debug("[MessageAPI] Token not set.");
+            return Promise.reject();
         }
 
-        const res = await fetch(`${PUBLIC_API_URL}/message`, {
+        const res = await fetch(`${this._url}/message`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -28,5 +29,3 @@ class MessageAPI {
         }
     }
 }
-
-export default new MessageAPI();

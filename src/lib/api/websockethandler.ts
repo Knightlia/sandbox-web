@@ -1,8 +1,13 @@
-import { PUBLIC_WS_URL } from "$env/static/public";
 import { isLoading, messageList, userList, userNickname } from "$lib/stores";
 import UserSetting from "$lib/usersetting";
 
-class WebSocketHandler {
+export default class WebSocketHandler {
+
+    /**
+     * URL for the websocket client to connect to.
+     * @private
+     */
+    private readonly _url = import.meta.env.VITE_WS_URL;
 
     /**
      * Reference to the user nickname.
@@ -25,7 +30,7 @@ class WebSocketHandler {
     }
 
     connect() {
-        const ws = new WebSocket(PUBLIC_WS_URL);
+        const ws = new WebSocket(this._url);
         ws.onopen = () => this._onOpen(ws);
         ws.onmessage = e => this._onMessage(e);
         ws.onclose = this._onClose;
@@ -38,7 +43,7 @@ class WebSocketHandler {
      * @private
      */
     private _onOpen(ws: WebSocket): void {
-        console.debug("Connected to websocket.");
+        console.debug("Websocket connected.");
         this._ping = window.setInterval(() => {
             ws.send("ping");
             console.debug("Sent websocket ping message.");
@@ -49,16 +54,19 @@ class WebSocketHandler {
         const data = JSON.parse(e.data);
         console.debug(data);
 
-        switch (data.mt) {
+        switch (data.messageType) {
             case "TOKEN_PAYLOAD":
-                UserSetting.token = data.t;
+                UserSetting.token = data.token;
                 isLoading.set(false);
                 break;
             case "USER_LIST_PAYLOAD":
-                userList.set(data.ul);
+                userList.set(data.userList);
                 break;
             case "MESSAGE_PAYLOAD":
-                const sender = data.s, message = data.m, timestamp = data.t, isSender = data.s === this._nickname;
+                const sender = data.sender,
+                    message = data.message,
+                    timestamp = data.timestamp,
+                    isSender = data.sender === this._nickname;
                 messageList.update(m => [...m, { sender, message, timestamp, isSender }]);
                 break;
             default:
@@ -75,5 +83,3 @@ class WebSocketHandler {
         console.error("Error in websocket connection:", e);
     }
 }
-
-export default new WebSocketHandler();

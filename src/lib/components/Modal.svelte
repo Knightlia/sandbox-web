@@ -4,6 +4,8 @@
     import GetErrorMessage from "$lib/api/errorcodes";
     import { afterUpdate } from "svelte";
 
+    const nicknameAPI = new NicknameAPI();
+
     let disabled = false,
         error = { visible: false, msg: "" },
         input: HTMLInputElement;
@@ -20,7 +22,7 @@
 
         try {
             const formData = new FormData(e.currentTarget as HTMLFormElement);
-            await NicknameAPI.execute(formData.get("nickname") as string);
+            await nicknameAPI.execute(formData.get("nickname") as string);
         } catch (e: unknown) {
             disabled = false;
             const code = e as Error;

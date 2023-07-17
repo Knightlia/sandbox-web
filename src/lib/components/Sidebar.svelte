@@ -9,9 +9,9 @@
         $sidebarVisible = screen.width >= 768;
     });
 
-    userList.subscribe(val => {
+    userList.subscribe((val) => {
         if ($userNickname !== "") {
-            ul = val.filter(i => i !== UserSetting.nickname);
+            ul = val.filter((i) => i !== UserSetting.nickname);
             ul.unshift(UserSetting.nickname);
         } else {
             ul = val;
@@ -21,11 +21,12 @@
 
 <div>
     <div
-        class:overlay="{$sidebarVisible}"
-        on:click={() => sidebarVisible.update(v => !v)}
-        on:keydown={() => sidebarVisible.update(v => !v)}
-    ></div>
-    <aside class:collapsed="{!$sidebarVisible}">
+        class:overlay={$sidebarVisible}
+        on:click={() => sidebarVisible.update((v) => !v)}
+        on:keydown={() => sidebarVisible.update((v) => !v)}
+        role="none"
+    />
+    <aside class:collapsed={!$sidebarVisible}>
         <header class="py-3">
             <h4>User List</h4>
         </header>

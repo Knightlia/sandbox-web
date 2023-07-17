@@ -1,7 +1,6 @@
 <script lang="ts">
     import { dropdownVisible } from "$lib/stores";
-
-    export let label: string;
+    import { SunOutline } from "flowbite-svelte-icons";
 
     function clickOutside(node: HTMLElement) {
         const handleClick = (e: MouseEvent) => {
@@ -25,7 +24,7 @@
 
 <div>
     <button on:click={() => $dropdownVisible = true}>
-        {label}
+        <SunOutline size="md" tabindex="-1"/>
     </button>
     <ul class:invisible={!$dropdownVisible} use:clickOutside on:outclick={hideDropdown}>
         <slot/>

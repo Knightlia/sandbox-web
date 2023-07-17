@@ -1,9 +1,10 @@
 <script lang="ts">
-    export let label: string,
-               onclick: () => void;
+    import type { SvelteComponent } from "svelte";
+
+    export let label: string | SvelteComponent, onclick: () => void;
 </script>
 
-<li class="py-2 px-3" on:click={onclick} on:keydown={onclick}>
+<li class="py-2 px-3" on:click={onclick} on:keydown={onclick} role="menuitem">
     {label}
 </li>
 

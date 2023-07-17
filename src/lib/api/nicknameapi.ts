@@ -1,16 +1,17 @@
-import { PUBLIC_API_URL } from "$env/static/public";
 import UserSetting from "$lib/usersetting";
 import { modalVisible, userNickname } from "$lib/stores";
 
-class NicknameAPI {
+export default class NicknameAPI {
+
+    private readonly _url = import.meta.env.VITE_API_URL;
 
     async execute(nickname: string): Promise<void> {
         if (!UserSetting.token) {
             console.debug("[NicknameAPI] Token not set.");
-            return;
+            return Promise.reject();
         }
 
-        const res = await fetch(`${PUBLIC_API_URL}/nickname`, {
+        const res = await fetch(`${this._url}/nickname`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,5 +31,3 @@ class NicknameAPI {
         modalVisible.set(false);
     }
 }
-
-export default new NicknameAPI();

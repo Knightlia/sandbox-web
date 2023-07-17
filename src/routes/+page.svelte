@@ -5,8 +5,10 @@
     import { onMount } from "svelte";
     import WebsocketHandler from "$lib/api/websockethandler";
 
+    const websocketHandler = new WebsocketHandler();
+
     onMount(async () => {
-        WebsocketHandler.connect();
+        websocketHandler.connect();
     });
 </script>
 
