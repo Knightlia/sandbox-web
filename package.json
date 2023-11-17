@@ -28,7 +28,7 @@
   "homepage": "https://github.com/Knightlia/sandbox-web#readme",
   "dependencies": {
     "@sveltejs/adapter-static": "^2.0.1",
-    "@sveltejs/kit": "^1.22.3",
+    "@sveltejs/kit": "^1.27.6",
     "svelte": "^4.0.5"
   },
   "devDependencies": {
