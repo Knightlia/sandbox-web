@@ -1,24 +1,26 @@
 {
-  "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "removeComments": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "types": ["vite/client", "vitest", "vitest/globals"],
-    "paths": {
-      "$lib": ["src/lib"],
-      "$lib/*": ["src/lib/*"]
-    }
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Misc */
+    "types": ["vite/client"]
   },
-  "include": [
-    ".svelte-kit/ambient.d.ts",
-    ".svelte-kit/types/**/$types.d.ts",
-    "vite.config.ts",
-    "src/**/*.ts",
-    "src/**/*.svelte",
-    "tests/**/*.ts"
-  ]
+  "include": ["src"]
 }
